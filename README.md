@@ -1,9 +1,6 @@
 # VCrypt_Tracker
 a crypto currency tracking web application built using React 
 
-
-# 🚀 React App Starter
-
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![React](https://img.shields.io/badge/React-v18+-61DAFB?logo=react)
@@ -11,8 +8,8 @@ a crypto currency tracking web application built using React
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/facebook/create-react-app/main/logo.svg" alt="React Logo" width="120" />
-  <h2>Welcome to Your React App!</h2>
-  <p>A modern React setup powered by Create React App</p>
+  <h2>Welcome to VCrypt_Tracker!</h2>
+  <p>A Crypto currency tracking webApp</p>
 </div>
 
 ---
