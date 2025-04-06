@@ -4,7 +4,6 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![React](https://img.shields.io/badge/React-v18+-61DAFB?logo=react)
-![Made with CRA](https://img.shields.io/badge/Create--React--App-✔️-lightgrey)
 
 a crypto currency tracking web application built using React  
 
