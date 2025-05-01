@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-function Footer() {
+function Footer1() {
   function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -33,4 +33,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footer1;

@@ -6,9 +6,12 @@ import Compare from "./pages/Compare";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Watchlist from "./pages/Watchlist";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import Auth from "./pages/Auth";
+
+
 
 function App() {
   const theme = createTheme({
@@ -63,6 +66,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/coin/:id" element={<Coin />} />
             <Route path="/compare" element={<Compare />} />

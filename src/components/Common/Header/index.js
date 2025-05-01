@@ -54,6 +54,9 @@ function Header() {
         <a href="/watchlist">
           <p className="link">Watchlist</p>
         </a>
+        <a href="/auth">
+          <p className="link">Login/Signup</p>
+        </a>
         <a href="/dashboard">
           <Button text={"dashboard"} />
         </a>
