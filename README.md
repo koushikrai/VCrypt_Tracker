@@ -17,4 +17,9 @@ git clone https://github.com/koushikrai/VCryptTracker.git
 cd VCryptTracker
 npm install
 npm start
+ backend:
+cd src
+cd backend
+node server.js
+make sure you add your .env file in backend folder
 
