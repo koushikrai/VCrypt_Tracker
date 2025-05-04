@@ -2,26 +2,32 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Box, Container } from "@mui/material";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom"; // Assuming you're using react-router-dom for navigation
 import { login, signup } from "../components/Auth/api"; // Make sure the import paths are correct
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true); // Toggle between login and signup
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   // Handle form submission (login/signup)
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (username === "" || password === "") {
       toast.error("Please fill out both fields");
       return;
     }
-
+  
     try {
       if (isLogin) {
         const response = await login(username, password);
         toast.success(response);
+  
+        // ✅ Redirect only if login is successful
+        if (response === "Login successful") {
+          navigate("/");
+        }
       } else {
         const response = await signup(username, password);
         toast.success(response);
@@ -30,6 +36,7 @@ const Auth = () => {
       toast.error(error.message || "Something went wrong");
     }
   };
+        
 
   return (
     <Container component="main" maxWidth="xs">

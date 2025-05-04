@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { signup, login } from '../api';
+import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router-dom for navigation
 import {
   Box,
   Button,
@@ -18,23 +19,31 @@ function Auth() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const navigate = useNavigate(); // Assuming you're using react-router-dom for navigation
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (isSignup && password !== confirmPassword) {
       setMessage("Passwords don't match!");
       return;
     }
-
+  
     try {
       const response = isSignup
         ? await signup(username, password)
         : await login(username, password);
-
+  
       setMessage(response);
+  
+      // ✅ Redirect to homepage if login is successful
+      if (!isSignup && response === 'Login successful') {
+        navigate('/');
+      }
     } catch (error) {
       setMessage('Something went wrong!');
     }
   };
+  
 
   return (
     <Box
