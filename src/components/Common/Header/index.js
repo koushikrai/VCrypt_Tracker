@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 
 function Header() {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") == "dark" ? true : false
+    localStorage.getItem("theme") === "dark" ? true : false
   );
 
   useEffect(() => {
-    if (localStorage.getItem("theme") == "dark") {
+    if (localStorage.getItem("theme") === "dark") {
       setDark();
     } else {
       setLight();
@@ -19,7 +19,7 @@ function Header() {
   }, []);
 
   const changeMode = () => {
-    if (localStorage.getItem("theme") != "dark") {
+    if (localStorage.getItem("theme") !== "dark") {
       setDark();
     } else {
       setLight();
@@ -55,7 +55,16 @@ function Header() {
           <p className="link">Watchlist</p>
         </a>
         <a href="/auth">
-          <p className="link">Login/Signup</p>
+          <p className="link">
+          {localStorage.getItem("isLoggedIn") === "true" ? (
+          <span onClick={() => {
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "/"; // Refresh and redirect to login
+          }}>Logout</span>
+          ) : (
+           "Login/Signup"
+        )}
+          </p>
         </a>
         <a href="/dashboard">
           <Button text={"dashboard"} />

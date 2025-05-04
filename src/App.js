@@ -11,8 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import Auth from "./pages/Auth";
 
-
-
 function App() {
   const theme = createTheme({
     palette: {
@@ -22,10 +20,11 @@ function App() {
     },
   });
 
-  var cursor;
-  var cursorPointer;
+  
 
   useEffect(() => {
+    var cursor ;
+    var cursorPointer;
     cursor = document.getElementById("cursor");
     cursorPointer = document.getElementById("cursor-pointer");
 
