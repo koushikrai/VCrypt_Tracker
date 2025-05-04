@@ -78,9 +78,8 @@ a {
   text-decoration: none;
   color: var(--white) !important;
 }
-/* cursor follower animation */
 
-/* .cursor {
+.cursor {
   position: fixed;
   transform: translateX(-50%) translateY(-50%);
   pointer-events: none;
@@ -91,11 +90,11 @@ a {
   width: 0.3rem;
   border-radius: 50%;
   transition: all 200ms ease-out;
-} */
+}
 
-/* .cursor-pointer {
+.cursor-pointer {
   position: fixed;
-  transform: translateX(-50%) translateY(-50%);
+  /* transform: translateX(-50%) translateY(-50%);
   pointer-events: none;
   background-color: transparent;
   border-radius: 50%;
@@ -103,8 +102,8 @@ a {
   border: 2px solid var(--blue);
   height: 2rem;
   width: 2rem;
-  transition: all 400ms ease-out;
-} */
+  transition: all 400ms ease-out; */
+}
 
 @media only screen and (max-width: 600px) {
   .cursor-pointer,
