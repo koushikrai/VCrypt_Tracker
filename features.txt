@@ -61,5 +61,3 @@ Other features -
 37. Gradient footer - gradient animation
 38. Added toasts - react-toastify for every action.
 
-
-Add this project in your resume.

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Info from "../components/CoinPage/Info";
 import LineChart from "../components/CoinPage/LineChart";
@@ -22,44 +22,55 @@ function Coin() {
   const [days, setDays] = useState(30);
   const [priceType, setPriceType] = useState("prices");
 
-  useEffect(() => {
-    if (id) {
-      getData();
-    }
-  }, [id]);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     setLoading(true);
-    let coinData = await getCoinData(id, setError);
-    console.log("Coin DATA>>>>", coinData);
-    settingCoinObject(coinData, setCoin);
-    if (coinData) {
+    try {
+      const coinData = await getCoinData(id, setError);
+      console.log("Coin DATA >>>>", coinData);
+
+      if (!coinData || !coinData.id) {
+        setError(true);
+        return;
+      }
+
+      settingCoinObject(coinData, setCoin);
+
       const prices = await getPrices(id, days, priceType, setError);
       if (prices) {
         settingChartData(setChartData, prices);
-        setLoading(false);
       }
-    }
-  };
-
-  const handleDaysChange = async (event) => {
-    setLoading(true);
-    setDays(event.target.value);
-    const prices = await getPrices(id, event.target.value, priceType, setError);
-    if (prices) {
-      settingChartData(setChartData, prices);
+    } catch (err) {
+      console.error("Error fetching coin data:", err);
+      setError(true);
+    } finally {
       setLoading(false);
     }
+  }, [id, days, priceType]);
+
+  useEffect(() => {
+    if (id) getData();
+  }, [id, getData]);
+
+  const handleDaysChange = async (event) => {
+    const value = event.target.value;
+    setLoading(true);
+    setDays(value);
+    const prices = await getPrices(id, value, priceType, setError);
+    if (prices) {
+      settingChartData(setChartData, prices);
+    }
+    setLoading(false);
   };
 
   const handlePriceTypeChange = async (event) => {
+    const value = event.target.value;
     setLoading(true);
-    setPriceType(event.target.value);
-    const prices = await getPrices(id, days, event.target.value, setError);
+    setPriceType(value);
+    const prices = await getPrices(id, days, value, setError);
     if (prices) {
       settingChartData(setChartData, prices);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
@@ -83,7 +94,7 @@ function Coin() {
       ) : error ? (
         <div>
           <h1 style={{ textAlign: "center" }}>
-            Sorry, Couldn't find the coin you're looking for 😞
+            Sorry, couldn't find the coin you're looking for 😞
           </h1>
           <div
             style={{

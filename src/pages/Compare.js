@@ -30,27 +30,27 @@ function Compare() {
   });
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    setLoading(true);
-    const coins = await get100Coins();
-    if (coins) {
-      setAllCoins(coins);
-      const data1 = await getCoinData(crypto1);
-      const data2 = await getCoinData(crypto2);
-      settingCoinObject(data1, setCoin1Data);
-      settingCoinObject(data2, setCoin2Data);
-      if (data1 && data2) {
-        // getPrices
-        const prices1 = await getPrices(crypto1, days, priceType);
-        const prices2 = await getPrices(crypto2, days, priceType);
-        settingChartData(setChartData, prices1, prices2);
-        setLoading(false);
+    const getData = async () => {
+      setLoading(true);
+      const coins = await get100Coins();
+      if (coins) {
+        setAllCoins(coins);
+        const data1 = await getCoinData(crypto1);
+        const data2 = await getCoinData(crypto2);
+        settingCoinObject(data1, setCoin1Data);
+        settingCoinObject(data2, setCoin2Data);
+        if (data1 && data2) {
+          // getPrices
+          const prices1 = await getPrices(crypto1, days, priceType);
+          const prices2 = await getPrices(crypto2, days, priceType);
+          settingChartData(setChartData, prices1, prices2);
+          setLoading(false);
+        }
       }
-    }
-  };
+    };
+    getData();
+    // Add dependencies as needed
+  }, [crypto1, crypto2, days, priceType]);
 
   const onCoinChange = async (e, isCoin2) => {
     setLoading(true);

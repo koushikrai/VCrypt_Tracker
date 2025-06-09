@@ -1,12 +1,12 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto"; //Dont get rid of this
+import { Chart as ChartJS } from "chart.js/auto"; // Don't remove this
 
 function LineChart({ chartData, multiAxis }) {
   const options = {
     plugins: {
       legend: {
-        display: multiAxis ? true : false,
+        display: !!multiAxis, // ensures it's boolean
       },
     },
     responsive: true,
@@ -18,9 +18,11 @@ function LineChart({ chartData, multiAxis }) {
       crypto1: {
         position: "left",
       },
-      crypto2: multiAxis && {
-        position: "right",
-      },
+      ...(multiAxis && {
+        crypto2: {
+          position: "right",
+        },
+      }),
     },
   };
 
